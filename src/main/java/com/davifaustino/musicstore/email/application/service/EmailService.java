@@ -10,6 +10,7 @@ import com.davifaustino.musicstore.email.application.dto.EmailDto;
 import com.davifaustino.musicstore.email.infrastructure.repository.EmailRepository;
 import com.davifaustino.musicstore.email.model.EmailModel;
 import com.davifaustino.musicstore.email.model.enums.EmailStatus;
+import com.davifaustino.musicstore.email.model.event.UserCreatedEvent;
 
 @Service
 public class EmailService {
@@ -24,7 +25,16 @@ public class EmailService {
         this.emailSender = emailSender;
     }
 
-    public EmailModel sendEmail(EmailDto emailDto) {
+    public EmailModel sendUserCreatedEmail(UserCreatedEvent event) {
+        var email = new EmailDto(
+            event.email(),
+            "New account at Music Store",
+            String.format("Congrats, %s! You've created a new account at Music Store.", event.name())
+        );
+        return sendEmail(email);
+    } 
+
+    private EmailModel sendEmail(EmailDto emailDto) {
         var email = createPendingEmail(emailDto);
         email = emailRepository.save(email);
 

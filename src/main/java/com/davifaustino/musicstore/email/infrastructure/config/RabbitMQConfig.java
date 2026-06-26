@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String QUEUE_NAME = "email-queue";
+    public static final String USER_CREATED_QUEUE_NAME = "email.user-created.queue";
 
     @Bean
     public Queue queue() {
-        return new Queue(QUEUE_NAME, true);
+        return new Queue(USER_CREATED_QUEUE_NAME, true);
     }
 
     @Bean
