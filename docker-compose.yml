@@ -3,7 +3,7 @@ networks:
     driver: bridge
 
 volumes:
-  db-data:
+  email-db-data:
 
 services:
   database:
@@ -18,7 +18,7 @@ services:
     networks:
       - music-store-network
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - email-db-data:/var/lib/postgresql/data
 
   rabbitmq:
     image: rabbitmq:3-management
