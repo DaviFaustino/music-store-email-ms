@@ -6,7 +6,7 @@ volumes:
   email-db-data:
 
 services:
-  database:
+  email-db:
     image: postgres:latest
     container_name: email-db
     environment:
@@ -22,7 +22,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: email-rabbitmq
+    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -34,13 +34,15 @@ services:
     container_name: email-service
     ports:
       - "8080:8080"
+    # env_file:
+    #   - .env
     environment:
       MAIL_HOST: ${MAIL_HOST}
       MAIL_PORT: ${MAIL_PORT}
       MAIL_USERNAME: ${MAIL_USERNAME}
       MAIL_PASSWORD: ${MAIL_PASSWORD}
     depends_on:
-      - database
+      - email-db
       - rabbitmq
     networks:
       - music-store-network

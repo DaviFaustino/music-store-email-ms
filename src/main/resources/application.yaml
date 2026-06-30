@@ -4,7 +4,7 @@ spring:
   config:
     import: optional:file:.env[.properties]
   datasource:
-    url: jdbc:postgresql://localhost:5432/email
+    url: jdbc:postgresql://email-db:5432/email
     username: postgres
     password: postgres
   jpa:
@@ -23,7 +23,7 @@ spring:
           starttls:
             enable: true
   rabbitmq:
-    host: localhost
+    host: rabbitmq
     port: 5672
     username: guest
     password: guest

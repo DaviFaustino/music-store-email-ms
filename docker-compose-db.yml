@@ -2,7 +2,7 @@ volumes:
   email-db-data:
 
 services:
-  database:
+  email-db:
     image: postgres:latest
     container_name: email-db
     environment:
