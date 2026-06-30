@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+docker build -t davifaustino/music-store-email-ms:latest .

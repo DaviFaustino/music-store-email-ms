@@ -1,0 +1,11 @@
+.git
+.gradle
+build
+bin
+
+.env
+.env.*
+
+Dockerfile
+docker-compose*.yml
+HELP.md
